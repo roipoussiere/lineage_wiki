@@ -6,27 +6,45 @@ permalink: contributing_wiki.html
 ---
 So, you've decided you want to edit the wiki. Awesome! This page will show you how to get started. Please follow the instructions that are most appropriate for you.
 
-## Cloning the wiki
+## Prerequies
 
-### Using repo
+### Create a GitHub account
 
-If you already have a LineageOS source tree checked out, then this step is done for you. The wiki's git repository is present under `$LINEAGE_SRC/lineage/wiki`.
+If you don't have a github account, you need to [create one](https://github.com/join).
 
-### Using git
+### Forking the wiki repository
 
-If you don't have a LineageOS source tree on your device, then you can clone the wiki from GitHub to any directory you like. In this example, we'll use `~/lineage_wiki`.
+First, you must fork the wiki repository, in order to work on your own copy and send a *pull request*.
 
-#### Install Git
+Go to the [lineageOS wiki github page](https://github.com/LineageOS/lineage_wiki), then click on the fork button.
 
-##### On Windows
+## Edit directly on GitHub
+
+You just want to submit a quick edit? The easiest way is to edit directly on GitHub. Go to to Github page of the repo you just cloned (should be `https://github.com/<your_github_username>/lineage_wiki`), then find the page you want to edit (you can use the github search feature), then click on the edit button (pencil icon).
+
+Add your changes, then type a commit message (for instance "wiki: Update hiae pages") and click on *Commit changes* button.
+
+## Send a pull request
+
+Go to your GitHub repository page, then click on *New pull request* button, then fill the form and click *Create merge request*.
+
+That's it! Thank you for your contribution!
+
+## Advanced use: edit locally 
+
+{% include tip.html content="Here we will describe how to clone your own copy, edit chages locally the push them. That way you can preview your changes online using GitHub pages, which [we've detailed below](#preview-using-github)." %}
+
+### Install Git
+
+#### On Windows
 
 Install [Git for Windows](https://git-for-windows.github.io/).
 
-##### On macOS
+#### On macOS
 
 Install Git using the [Git installer](https://git-scm.com/download/mac).
 
-##### On Linux
+#### On Linux
 
 You can install Git by running:
 
@@ -36,7 +54,7 @@ sudo apt-get install git
 
 More specific instructions for different distributions can be found [here](https://git-scm.com/download/linux).
 
-#### Configure Git
+### Configure Git
 
 Run:
 
@@ -45,16 +63,30 @@ git config --global user.name "Your Name"
 git config --global user.email "youremail@example.com"
 ```
 
-{% include tip.html content="Before this step, you can fork the LineageOS wiki repository and work on your own copy. That way you can preview your changes online using GitHub pages, which [we've detailed below](#preview-using-github). Just fork the repo and then replace LineageOS in the `git clone` command with your GitHub username." %}
+### Clone the wiki
+
+#### Using repo
+
+If you already have a LineageOS source tree checked out, then this step is done for you. The wiki's git repository is present under `$LINEAGE_SRC/lineage/wiki`.
+
+You may want to set remote url to you fork:
 
 ```
-git clone https://github.com/LineageOS/lineage_wiki ~/lineage_wiki
+git remote set-url origin https://github.com/<github_username>/lineage_wiki.git
+```
+
+#### Using git
+
+If you don't have a LineageOS source tree on your computer, then you can clone the wiki from GitHub to any directory you like. In this example, we'll use `~/lineage_wiki`.
+
+```
+git clone https://github.com/<your_github_username>/lineage_wiki ~/lineage_wiki
 cd ~/lineage_wiki
 curl -Lo .git/hooks/commit-msg https://review.lineageos.org/tools/hooks/commit-msg
 chmod +x .git/hooks/commit-msg
 ```
 
-## Making and previewing changes
+### Making and previewing changes
 
 You can now make changes in this folder using your favorite text editor. If you ever need to reset your folder to a known-good state, erasing your changes, just run:
 
@@ -62,7 +94,7 @@ You can now make changes in this folder using your favorite text editor. If you 
 git reset --hard HEAD
 ```
 
-### Preview using GitHub
+#### Preview using GitHub
 
 This is probably the easiest method, but requires you to have forked the wiki repository, and have cloned from that.
 
@@ -77,12 +109,14 @@ git commit
 
 An editor will pop up. In the first line, type a short (below 80 character) description of your changes,
 then put a blank line, and, if you want, a more detailed description of your changes. For example:
+
 ```
 Add the contributing page
 
 The contributing page will show people how they can edit our wiki, which
 is important, since it wouldn't be much of a wiki without editors.
 ```
+
 Save the file and exit the editor. Now upload your changes to GitHub:
 
 ```
@@ -196,7 +230,7 @@ At this point you should be able to view the [local Jekyll server](http://127.0.
 
 {% include note.html content="If you work on a remote server and trust the network on which you are connected, you can add `--host <fully-qualified hostname>` to the Jekyll command line to allow remote connections to the server." %}
 
-## Uploading your changes
+### Uploading your changes
 
 LineageOS uses [Gerrit](http://review.lineageos.org/) to review proposed changes. Before you begin,
 you'll need to [create an account](https://review.lineageos.org/login/%23%2Fregister%2Fq%2Fstatus%3Aopen),
